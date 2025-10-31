@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Model Leaderboard</h1>
+<table style="width:100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="text-align:left; border-bottom:1px solid #334;">Model</th>
+      <th style="text-align:left; border-bottom:1px solid #334;">Task</th>
+      <th style="text-align:left; border-bottom:1px solid #334;">Key Metric</th>
+      <th style="text-align:left; border-bottom:1px solid #334;">Plots</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in runs %}
+    <tr>
+      <td>{{ r.model }}</td>
+      <td>{{ r.task }}</td>
+      <td>
+        {% if r.metrics.roc_auc %} ROC-AUC: {{ '%.3f'|format(r.metrics.roc_auc) }}
+        {% elif r.metrics.accuracy %} Accuracy: {{ '%.3f'|format(r.metrics.accuracy) }}
+        {% elif r.metrics.r2 %} R²: {{ '%.3f'|format(r.metrics.r2) }}
+        {% elif r.metrics.mse %} MSE: {{ '%.3f'|format(r.metrics.mse) }}
+        {% endif %}
+      </td>
+      <td>
+        {% if r.plots.confusion %}<a href="/static_proxy?path={{ r.plots.confusion }}">CM</a>{% endif %}
+        {% if r.plots.roc %} | <a href="/static_proxy?path={{ r.plots.roc }}">ROC</a>{% endif %}
+        {% if r.plots.pr %} | <a href="/static_proxy?path={{ r.plots.pr }}">PR</a>{% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">No runs yet. Train a model!</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

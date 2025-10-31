@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Train & Evaluate</h1>
+<form method="post">
+  <label>Task</label>
+  <select name="task" required>
+    <option value="classification">classification</option>
+    <option value="regression">regression</option>
+  </select>
+
+  <label>Model</label>
+  <select name="model" required>
+    <option value="linear">linear (regression)</option>
+    <option value="logistic">logistic (classification)</option>
+    <option value="tree">decision tree</option>
+    <option value="random_forest">random forest</option>
+    <option value="boosting">gradient boosting</option>
+    <option value="svm">SVM</option>
+    <option value="dnn">user-defined DNN</option>
+  </select>
+
+  <div class="grid2">
+    <div>
+      <label>max_depth (trees/ensembles)</label>
+      <input type="number" name="max_depth" placeholder="e.g. 6">
+    </div>
+    <div>
+      <label>n_estimators (RF/GBM)</label>
+      <input type="number" name="n_estimators" placeholder="e.g. 200">
+    </div>
+    <div>
+      <label>SVM C</label>
+      <input type="text" name="C" placeholder="1.0">
+    </div>
+    <div>
+      <label>SVM kernel</label>
+      <input type="text" name="kernel" placeholder="rbf">
+    </div>
+  </div>
+
+  <h3>DNN Options</h3>
+  <label>Hidden layers (comma-separated)</label>
+  <input type="text" name="hidden" value="128,64">
+  <div class="grid2">
+    <div>
+      <label>Epochs</label>
+      <input type="number" name="epochs" value="30">
+    </div>
+    <div>
+      <label>Learning rate</label>
+      <input type="text" name="lr" value="0.001">
+    </div>
+  </div>
+
+  <button type="submit">Run</button>
+</form>
+{% endblock %}
