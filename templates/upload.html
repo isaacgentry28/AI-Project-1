@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Upload Dataset</h1>
+<form method="post" enctype="multipart/form-data">
+  <label>Select a file (.csv, .txt, .xlsx):</label>
+  <input type="file" name="file" required>
+  <button type="submit">Upload</button>
+</form>
+{% if uploaded %}
+  <p>Last uploaded: <code>{{ uploaded }}</code></p>
+{% endif %}
+{% endblock %}

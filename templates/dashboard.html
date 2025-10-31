@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<p>Welcome, {{ current_user.email }}.</p>
+<ul>
+  <li><a href="{{ url_for('upload') }}">Upload a dataset</a></li>
+  <li><a href="{{ url_for('preprocess') }}">Preprocess and split</a></li>
+</ul>
+
+<h2>Artifacts</h2>
+<ul>
+{% for f in files %}
+  <li>{{ f }}</li>
+{% else %}
+  <li>No artifacts yet. Run preprocessing!</li>
+{% endfor %}
+</ul>
+{% endblock %}
