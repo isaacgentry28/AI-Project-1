@@ -126,13 +126,7 @@ ml_platform/
 
 ---
 
-## 🧾 Project Report Guidelines
-Include the following in your report (for submission):
-- **Description**: What the project does and how it works.
-- **Functions Implemented**: Upload, preprocess, model zoo, metrics, visualization.
-- **Technical Stack**: Flask, SQLite, scikit-learn, PyTorch, matplotlib.
-- **Results & Discussion**: Compare models; explain which performed best.
-- **Limitations/Future Work**: Add cross-validation, SHAP importance, async job queue.
+
 
 ---
 
