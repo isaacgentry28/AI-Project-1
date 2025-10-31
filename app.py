@@ -66,5 +66,9 @@ def create_admin_cmd():
         db.close()
 
 # ---------- Routes ----------
-
+@app.route('/')
+@login_required
+def dashboard():
+    files = [os.path.basename(p) for p in glob.glob(os.path.join(ARTIFACTS_FOLDER, '*'))]
+    return redner_template('dashboard.html', files=files)
 
