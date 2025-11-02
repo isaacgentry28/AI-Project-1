@@ -1,10 +1,11 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-import numpy as np 
-import torch 
+import numpy as np
+import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
+
 
 def _infer_output(y: np.ndarray) -> Tuple[str, int]:
     # Heuristic: classification if discrete with small number of classes
@@ -14,7 +15,6 @@ def _infer_output(y: np.ndarray) -> Tuple[str, int]:
             return 'binary', 1
         return 'multiclass', num_classes
     return 'regression', 1
-
 
 
 class MLP(nn.Module):
@@ -107,5 +107,3 @@ def train_dnn(
             return torch.argmax(logits, dim=1).numpy()
 
     return model, predict, predict_proba, task_type
-
-

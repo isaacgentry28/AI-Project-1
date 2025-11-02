@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from typing import Dict, Any
 
-from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression 
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.ensemble import (
-    RandomForestClassifier, RandomForestRegressor,
-    GradientBoostingClassifier, GradientBoostingRegressor,
+    RandomForestClassifier, RandomForestRegressor, 
+    GradientBoostingClassifier, GradientBoostingRegressor
 )
 from sklearn.svm import SVC, SVR
 
@@ -13,9 +13,9 @@ from sklearn.svm import SVC, SVR
 @dataclass
 class ModelSpec:
     name: str
-    task: str  # 'classification' or 'regression'
+    task: str # 'classification' or 'regression'
     params: Dict[str, Any]
-
+    
 
 def make_model(spec: ModelSpec):
     n = spec.name
@@ -44,3 +44,4 @@ def make_model(spec: ModelSpec):
         if n == 'svm':
             return SVR(**p)
         raise ValueError(f'Unknown regression model: {n}')
+
